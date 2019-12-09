@@ -1,9 +1,48 @@
+var carharttCommands = {
+    addRemoveItem: function () {
+        this
+        carhartt
+        .waitForElementPresent('@menMenu')
+        carhartt.moveToElement('@menMenu', 5, 5)
+        carhartt
+        .waitForElementPresent('@gifts')
+        .click('@gifts')
+        .waitForElementPresent('@outwear')
+        .click('@outwear')
+        carhartt.moveToElement('@firstOuterFront', 5, 5)
+        carhartt
+        .pause(300)
+        .waitForElementPresent('@firstOuterView')
+        .click('@firstOuterView')
+        .waitForElementPresent('@productScreen')
+        .waitForElementPresent('@colorMoss')
+        .waitForElementPresent('@xLargeTall')
+        .pause(1500)
+        .click('@colorMoss')
+        .click('@xLargeTall')
+        .waitForElementPresent('@addToCart')
+        .pause(1500)
+        .click('@addToCart')
+        .pause(1500)
+        .waitForElementPresent('@cartView')
+        .click('@cartView')
+        .waitForElementPresent('@cartItemOne')
+        carhartt.expect.element('@cartItemOne').contains.text("SANDSTONE SHERPA-LINED SIERRA JACKET")
+        carhartt
+        .click('@cartRemoveItemOne')
+        carhartt.expect.element('@emptyCart').contains.text("SHOPPING CART - 0 ITEMS")
+        carhartt
+        .click('@homePage')
+        .pause(1000)
+        return this
+    },
+}
 module.exports = {
     url: 'https://www.carhartt.com/',
-    commands: [],
+    commands: [carharttCommands],
     elements: {
         menMenu: {
-            selector: '//*[@id="accessible-megamenu-1575909199748-2"]',
+            selector: '/html/body/div[3]/div/header/div[3]/div[2]/div[2]/div[1]/div/nav/ul/li[1]/a',
             locateStrategy: 'xpath'
         },
         gifts: {
@@ -15,40 +54,24 @@ module.exports = {
             locateStrategy: 'xpath'
         },
         firstOuterFront: {
-            selector: '//*[@id="catalogEntry_img24591"]/img[2]',
+            selector: '//*[@id="catalogEntry_img24591"]/img[1]',
             locateStrategy: 'xpath'
         },
         firstOuterView: {
             selector: '//*[@id="J141_quickview"]',
             locateStrategy: 'xpath'
         },
-        colorMoss: {
-            selector: '//*[@id="swatches"]/ul/li[3]',
-            locateStrategy: 'xpath'
-        },
         xLarge: {
             selector: '/html/body/div[18]/div/div/div[2]/div[2]/div/div[6]/div[1]/ul/li[4]/a',
             locateStrategy: 'xpath'
         },
-        xLargeTall: {
-            selector: '/html/body/div[18]/div/div/div[2]/div[2]/div/div[6]/div[2]/ul/li[2]/a',
-            locateStrategy: 'xpath'
-        },
-        addToCart: {
-            selector: '/html/body/div[18]/div/div/div[2]/div[2]/div/ul/li[2]/a',
-            locateStrategy: 'xpath'
-        },
-        cartView: {
-            selector: '//*[@id="miniCartLink"]',
+        productAttrs: {
+            selector: '//*[@id="checkout"]/div[2]/div[1]/div[2]/div[2]/div/div[2]/div[3]',
             locateStrategy: 'xpath'
         },
         homePage: {
             selector: '//*[@id="top-header"]/div[3]/div[2]/div[1]/div[2]/div/a/div',
             locateStrategy: 'xpath'
-        },
-        cartItemOne: {
-            selector: '//*[@id="checkout"]/div[2]/div[1]/div[2]/div[2]/div/div[2]/div[1]/a',
-            locatestrategy: 'xpath'
         },
         cartRemoveItemOne: {
             selector: '//*[@id="checkout"]/div[2]/div[1]/div[2]/div[2]/div/div[2]/div[4]/div[3]/a',
@@ -58,5 +81,15 @@ module.exports = {
             selector: '//*[@id="top-bar-summary"]/div/div/div',
             locateStrategy: 'xpath'
         },
+        cartView: {
+            selector: '//span[text()="MY CART"]',
+            locateStrategy: 'xpath'
+        },
+        xLargeTall: 'a[data-attr-val-id="7000000000000001318"]',
+        addToCart: 'a.add-to-cart',
+        cartItemOne: 'div.t12 a',
+        productScreen: 'div.product',
+        colorMoss: 'a[title="Moss"]',
+        // cartView: 'a[id="miniCartLink"]',
     }
 }
